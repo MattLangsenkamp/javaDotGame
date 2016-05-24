@@ -23,7 +23,7 @@ public final class dotMainView extends JFrame{
 	
 	private final JButton endEarly;
 	
-	private static dotController controll;
+	private static dotController1 controll;
 	
 	public dotMainView(){
 		super("main game");
@@ -74,7 +74,7 @@ public final class dotMainView extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-	public static void registerController(dotController dot)
+	public static void registerController(dotController1 dot)
 	{
 		controll = dot;
 	}

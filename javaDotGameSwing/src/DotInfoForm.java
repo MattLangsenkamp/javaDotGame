@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 public class DotInfoForm extends JFrame {
 	
 	
-	private dotController controller;
+	private dotController1 controller;
 		
 	
 	/**
@@ -77,6 +77,13 @@ public class DotInfoForm extends JFrame {
 		    				boardSizeWidth.setEditable(false);
 		    				next.setEnabled(false);
 		    				dotMainView.registerController(controller);
+		    				
+		    				controller.updateNameOne(playerOneName.getText());
+		    				controller.updateNameTwo(playerTwoName.getText());
+		    				controller.updateCharOne(playerTwoChar.getText());
+		    				controller.updateCharTwo(playerTwoChar.getText());
+		    				controller.updateBoardSizeHeight(hInt);
+		    				controller.updateBoardSizeWidth(wInt);
 		    			}
 		    			else
 		    			{
@@ -132,7 +139,7 @@ public class DotInfoForm extends JFrame {
         
 	}
 	
-	public void registerController(dotController dot)
+	public void registerController(dotController1 dot)
 	{
 		this.controller = dot;
 	}
