@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 public class DotInfoForm extends JFrame {
 	
 	
-	private dotController1 controller;
+	private dotControllerInfoForm controller;
 		
 	
 	/**
@@ -39,15 +39,15 @@ public class DotInfoForm extends JFrame {
 		this.setVisible(true);
 		this.playerOneName = new JTextArea("Player One Name");
 		playerOneName.setPreferredSize(new Dimension(300,50));
-		this.playerOneChar = new JTextArea("Char");
+		this.playerOneChar = new JTextArea("H");
 		playerOneChar.setPreferredSize(new Dimension(50,50));
 		this.playerTwoName = new JTextArea("Player Two Name");
 		playerTwoName.setPreferredSize(new Dimension(300,50));
-		this.playerTwoChar = new JTextArea("Char");
+		this.playerTwoChar = new JTextArea("C");
 		playerTwoChar.setPreferredSize(new Dimension(50,50));
-		this.boardSizeHeight = new JTextArea("Height");
+		this.boardSizeHeight = new JTextArea("7");
 		boardSizeHeight.setPreferredSize(new Dimension(50,50));
-		this.boardSizeWidth = new JTextArea("Width");
+		this.boardSizeWidth = new JTextArea("9");
 		boardSizeWidth.setPreferredSize(new Dimension(50,50));
 		this.next = new JButton("next");
 		next.addActionListener(new ActionListener() {
@@ -67,6 +67,15 @@ public class DotInfoForm extends JFrame {
 		    		{
 		    			if(hInt > 2 && hInt <13 && wInt >3 && wInt < 13)
 		    			{
+		    				
+		    				
+		    				controller.updateNameOne(playerOneName.getText());
+		    				controller.updateNameTwo(playerTwoName.getText());
+		    				controller.updateCharOne(playerTwoChar.getText());
+		    				controller.updateCharTwo(playerTwoChar.getText());
+		    				controller.updateBoardSizeHeight(hInt);
+		    				controller.updateBoardSizeWidth(wInt);
+		    				
 		    				dotMainView game = new dotMainView();
 		    			    game.setVisible(true);
 		    			    playerOneName.setEditable(false);
@@ -76,14 +85,8 @@ public class DotInfoForm extends JFrame {
 		    				boardSizeHeight.setEditable(false);
 		    				boardSizeWidth.setEditable(false);
 		    				next.setEnabled(false);
-		    				dotMainView.registerController(controller);
 		    				
-		    				controller.updateNameOne(playerOneName.getText());
-		    				controller.updateNameTwo(playerTwoName.getText());
-		    				controller.updateCharOne(playerTwoChar.getText());
-		    				controller.updateCharTwo(playerTwoChar.getText());
-		    				controller.updateBoardSizeHeight(hInt);
-		    				controller.updateBoardSizeWidth(wInt);
+		    				dotMainView.registerController(controller);
 		    			}
 		    			else
 		    			{
@@ -139,7 +142,7 @@ public class DotInfoForm extends JFrame {
         
 	}
 	
-	public void registerController(dotController1 dot)
+	public void registerController(dotControllerInfoForm dot)
 	{
 		this.controller = dot;
 	}
