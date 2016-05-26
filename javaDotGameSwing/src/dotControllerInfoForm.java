@@ -70,7 +70,14 @@ public class dotControllerInfoForm {
 	public static String getPlayerTwoName() {
 		return model.playerTwoName();
 	}
+	public static int getRows() {
+		return model.boardSizeHeightBox();
+	}
+	public static int getColumns() {
+		return model.boardSizeWidthBox();
+	}
 	public static boolean isPlayerOneTurn() {
 		return model.isPlayerOneturn();
 	}
+	
 }

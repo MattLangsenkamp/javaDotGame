@@ -6,9 +6,8 @@ public final class dotRunner {
 	
 	public static void main(String[] args) {
 		dotModel1 dotModel = new dotModel1();
-		DotInfoForm dotView = new DotInfoForm();
-		
-		dotController1 dotControll = new dotController1(dotView, dotModel);
+		DotInfoForm dotView = new DotInfoForm();		
+		dotControllerInfoForm dotControll = new dotControllerInfoForm(dotView, dotModel);	
 		dotView.registerController(dotControll);
 	}
 }

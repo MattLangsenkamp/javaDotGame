@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +11,7 @@ public final class newButtonVert extends JButton {
 	public static boolean flagged = false;
 	
 	public newButtonVert () {
-		setSize(5,30);
+		this.setPreferredSize(new Dimension(15,50));
 		this.setBackground(Color.gray);
 		this.setVisible(true);
 		this.addActionListener(new ActionListener(){

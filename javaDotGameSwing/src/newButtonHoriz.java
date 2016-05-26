@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +12,7 @@ public final class newButtonHoriz extends JButton {
 	public static boolean flagged = false;
 	
 	public newButtonHoriz () {
-		this.setSize(30,5);
+		this.setPreferredSize(new Dimension(50,15));
 		this.setBackground(Color.gray);
 		this.setVisible(true);
 		this.addActionListener(new ActionListener(){

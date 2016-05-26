@@ -61,7 +61,7 @@ public  class dotModel1   {
 	}
 
 	
-	public static int boardSizewidthBox() {
+	public static int boardSizeWidthBox() {
 		
 		return IntValsInReferenceForm[3];
 	}
