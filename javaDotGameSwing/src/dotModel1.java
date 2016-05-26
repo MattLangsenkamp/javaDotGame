@@ -1,6 +1,6 @@
 
 
-public class dotModel1   {
+public  class dotModel1   {
 
 	// 0 - playerOneName, 1 - playerTwoName, 2 - playerOneChar, 3 - playertwoChar;
 	
@@ -8,52 +8,60 @@ public class dotModel1   {
 		
 		// 0 - playerOneScore, 1 - playerTwoScore, 2 - boardSizeH, 3 - boardSizeW;
 		
-	public int[] IntValsInReferenceForm = new int[4];
+	public static int[] IntValsInReferenceForm = new int[4];
 	
+	public static boolean playerOneTurn = true;
 	
-	public String playerOneName() {
-		String val = StringValsInReferenceForm[0];
-		return val;
+	public static boolean isPlayerOneturn() {
+		
+		return playerOneTurn;
+		
+	}
+	
+	public static String playerOneName() {
+		
+		return StringValsInReferenceForm[0];
+		
 	}
 
 	
-	public String playerTwoName() {
+	public static String playerTwoName() {
 		
 		return StringValsInReferenceForm[1];
 	}
 
 
-	public String playerOneChar() {
+	public static String playerOneChar() {
 		
 		return StringValsInReferenceForm[2];
 	}
 
 	
-	public String playerTwoChar() {
+	public static String playerTwoChar() {
 		
 		return StringValsInReferenceForm[3];
 	}
 
 	
-	public int playerOneScore() {
+	public static int playerOneScore() {
 		
 		return IntValsInReferenceForm[0];
 	}
 
 	
-	public int playerTwoScore() {
+	public static int playerTwoScore() {
 		
 		return IntValsInReferenceForm[1];
 	}
 
 	
-	public int boardSizeHeightBox() {
+	public static int boardSizeHeightBox() {
 		
 		return IntValsInReferenceForm[2];
 	}
 
 	
-	public int boardSizewidthBox() {
+	public static int boardSizewidthBox() {
 		
 		return IntValsInReferenceForm[3];
 	}
@@ -109,7 +117,12 @@ public class dotModel1   {
 
 	
 	public void updateTurn() {
-		// TODO Auto-generated method stub
+		if(this.playerOneTurn==true){
+			this.playerOneTurn = false;
+		}
+		if(this.playerOneTurn==false){
+			this.playerOneTurn = true;
+		}
 		
 	}
 
