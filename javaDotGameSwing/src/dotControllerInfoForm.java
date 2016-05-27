@@ -41,8 +41,6 @@ public class dotControllerInfoForm {
 	public void updateBoardSizeWidth(int w) {
 		model.setBoardW(w);	
 	}
-
-	
 	
 
 	
@@ -55,6 +53,10 @@ public class dotControllerInfoForm {
 	public void updateScoreTwo(int scoreTwo) {
 		model.setScoreTwo(scoreTwo);
 		
+	}
+	
+	public void updatePlayerTurn(){
+		model.updateTurn();
 	}
   //-------------- methods for main-game
 	public static String getPlayerOneScore() {
@@ -77,7 +79,9 @@ public class dotControllerInfoForm {
 		return model.boardSizeWidthBox();
 	}
 	public static boolean isPlayerOneTurn() {
+		System.out.println(model.isPlayerOneturn());
 		return model.isPlayerOneturn();
+		
 	}
 	
 }

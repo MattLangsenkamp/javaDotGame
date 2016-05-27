@@ -19,6 +19,7 @@ public final class newButtonVert extends JButton {
 		    {
 		    	setBackground(Color.BLACK);
 		    	flagged = true;
+		    	
 		    }
 		});
 	}

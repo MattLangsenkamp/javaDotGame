@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,7 +10,7 @@ public final class ButtonMiddle extends JButton {
 	
 	
 	public ButtonMiddle () {
-		setSize(5,5);
+		this.setPreferredSize(new Dimension(15,15));
 		this.setBackground(Color.BLACK);
 		this.setVisible(true);
 		

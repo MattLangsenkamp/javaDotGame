@@ -65,7 +65,7 @@ public class DotInfoForm extends JFrame {
 		    	{
 		    		if(!playerOneChar.getText().equals(playerTwoChar.getText()))
 		    		{
-		    			if(hInt > 2 && hInt <13 && wInt >3 && wInt < 13)
+		    			if(hInt > 2 && hInt <19 && wInt >2 && wInt < 19)
 		    			{
 		    				
 		    				

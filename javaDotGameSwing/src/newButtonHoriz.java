@@ -11,6 +11,7 @@ public final class newButtonHoriz extends JButton {
 	
 	public static boolean flagged = false;
 	
+	
 	public newButtonHoriz () {
 		this.setPreferredSize(new Dimension(50,15));
 		this.setBackground(Color.gray);
@@ -20,10 +21,12 @@ public final class newButtonHoriz extends JButton {
 		    {
 		    	setBackground(Color.BLACK);
 		    	flagged = true;
+		    	
 		    }
 		});
 	}
 	public static boolean hasBeenFlagged() {
 		return flagged;
 	}
+	
 }

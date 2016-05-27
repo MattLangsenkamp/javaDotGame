@@ -24,7 +24,9 @@ public final class dotMainView extends JFrame{
 	
 	private final JButton endEarly;
 	
-	private static dotControllerInfoForm controll;
+	public static dotControllerInfoForm controll;
+	
+	public static int flagged = 0;
 	
 	public dotMainView(){
 		super("main game");
@@ -39,12 +41,11 @@ public final class dotMainView extends JFrame{
 		playerTwoName.setPreferredSize(new Dimension(300,50));
 		playerTwoName.setEditable(false);
 		
-		this.playerOneScore = new JTextArea("0");
+		this.playerOneScore = new JTextArea(controll.getPlayerOneScore());
 		playerOneScore.setPreferredSize(new Dimension(50,50));
 		playerOneScore.setEditable(false);
 		
-		this.playerTwoScore = new JTextArea("0");
-		
+		this.playerTwoScore = new JTextArea(controll.getPlayerTwoScore());
 		playerTwoScore.setPreferredSize(new Dimension(50,50));
 		playerTwoScore.setEditable(false);
 		
@@ -167,6 +168,7 @@ public final class dotMainView extends JFrame{
 					{
 						//lines
 						returnVal[i][j] = new newButtonHoriz();
+						
 					}
 				}
 				else
@@ -176,6 +178,7 @@ public final class dotMainView extends JFrame{
 					{
 						// lines 
 						returnVal[i][j] = new newButtonVert();
+						
 					}
 					else
 					{
@@ -228,6 +231,11 @@ public final class dotMainView extends JFrame{
 			}
 		}
 	}
+	public static void isChange() {
+		System.out.println("it worked");
+		controll.updatePlayerTurn();
+	}
+	
 	public static void registerController(dotControllerInfoForm dot)
 	{
 		controll = dot;
