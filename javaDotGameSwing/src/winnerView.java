@@ -73,7 +73,7 @@ public final class winnerView extends JFrame{
 		setSize(300,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	public static void registerController(dotControllerInfoForm dot)
+	public void registerController(dotControllerInfoForm dot)
 	{
 		controll = dot;
 	}

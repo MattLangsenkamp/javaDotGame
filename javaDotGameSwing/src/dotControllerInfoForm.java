@@ -79,9 +79,17 @@ public class dotControllerInfoForm {
 		return model.boardSizeWidthBox();
 	}
 	public static boolean isPlayerOneTurn() {
-		System.out.println(model.isPlayerOneturn());
-		return model.isPlayerOneturn();
 		
+		return model.isPlayerOneturn();
+	}
+	public static String getPlayerChar(String player){
+		String val = "";
+		if(player == model.playerOneName()){
+			val = model.playerOneChar();
+		}else if (player == model.playerTwoName()){
+			val = model.playerTwoChar();
+		}
+		return val;
 	}
 	
 }

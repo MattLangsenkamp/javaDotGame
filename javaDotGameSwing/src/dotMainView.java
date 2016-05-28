@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,18 +22,25 @@ import java.awt.Color;
 
 public final class dotMainView extends JFrame{
 	
-	private final JTextArea playerOneName, playerTwoName, playerOneScore, playerTwoScore, turnText;
+	private JTextArea playerOneName,playerTwoName,playerOneScore,playerTwoScore;
+
+
+	private static JTextArea turnText;
+	
+	public static JComponent[][] array; 
+	//= boardBuilder(controll.getRows(),controll.getColumns());;
 	
 	private final JButton endEarly;
 	
 	public static dotControllerInfoForm controll;
+	public static dotControllerInfoForm booger;
 	
 	public static int flagged = 0;
 	
 	public dotMainView(){
 		super("main game");
 		String nameOne = controll.getPlayerOneName();
-		String nameTwo = dotControllerInfoForm.getPlayerTwoName();
+		String nameTwo = controll.getPlayerTwoName();
 		
 		this.playerOneName = new JTextArea(nameOne);
 		playerOneName.setPreferredSize(new Dimension(300,50));
@@ -61,7 +70,7 @@ public final class dotMainView extends JFrame{
 		board.setBackground(Color.WHITE);
 		
 		
-		JComponent[][] array = boardBuilder(controll.getRows(),controll.getColumns());
+		array = boardBuilder(controll.getRows(),controll.getColumns());
 		
 		
 		boardWriter(array,board,controll.getRows(),controll.getColumns());
@@ -119,7 +128,7 @@ public final class dotMainView extends JFrame{
 		container.add(buttonFlow);
 		
 		add(container);
-		setSize(boardHeight+40,boardWidth+350);
+		setSize(boardHeight+60,boardWidth+370);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	public void updateScoreOne(String t){
@@ -163,12 +172,33 @@ public final class dotMainView extends JFrame{
 					{
 						// middleButton
 						returnVal[i][j] = new ButtonMiddle();
+						
 					}
 					else
 					{
 						//lines
-						returnVal[i][j] = new newButtonHoriz();
-						
+						newButtonHoriz curH = new newButtonHoriz();
+						returnVal[i][j] = curH;
+						curH.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e)
+						    {
+								curH.setBackground(Color.BLACK);
+								
+								
+								avoidInitialization(controll.getRows(),controll.getColumns(),whoChar());
+								controll.updatePlayerTurn();
+								if(controll.isPlayerOneTurn()){
+									turnText.setText(controll.getPlayerOneName());
+								}
+								else
+								{
+									turnText.setText(controll.getPlayerTwoName());
+								}
+						    }
+
+							
+							
+						});
 					}
 				}
 				else
@@ -177,8 +207,26 @@ public final class dotMainView extends JFrame{
 					if(j%2==0)
 					{
 						// lines 
-						returnVal[i][j] = new newButtonVert();
-						
+						newButtonVert curV = new newButtonVert();
+						returnVal[i][j] = curV;
+						curV.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e)
+						    {
+								curV.setBackground(Color.BLACK);
+								
+								
+								
+								avoidInitialization(controll.getRows(),controll.getColumns(),whoChar());
+								controll.updatePlayerTurn();
+								if(controll.isPlayerOneTurn()){
+									turnText.setText(controll.getPlayerOneName());
+								}
+								else
+								{
+									turnText.setText(controll.getPlayerTwoName());
+								}
+						    }
+						});
 					}
 					else
 					{
@@ -206,38 +254,57 @@ public final class dotMainView extends JFrame{
 		newButtonHoriz top;
 		newButtonVert left;
 		newButtonVert right;
-		newButtonHoriz current;
-		JTextAreaCustom text;
+		newButtonHoriz bottom;
+		JTextAreaCustom text = new JTextAreaCustom();
 		int realRows = rows*2 +1;
 		int realColumns = columns*2 + 1;
 		for(int i=1; i<realRows-1; i++)
 		{
-			if (i%2==0){
+			if (i%2!=0){
 				for(int j=1; j<realColumns-1; j++)
 				{
 					if(j%2!=0)
 					{
-						top = (newButtonHoriz) board[i-2][j];
-						left = (newButtonVert) board[i-1][j-1];
-						right = (newButtonVert) board[i-1][j+1];
-						current = (newButtonHoriz) board[i][j];
-						if(top.hasBeenFlagged()&&left.hasBeenFlagged()&&right.hasBeenFlagged()&&current.hasBeenFlagged())
-						{
-							text = (JTextAreaCustom)board[i][j-1];
-							text.setText(Char);
+						top = (newButtonHoriz) board[i-1][j];
+						left = (newButtonVert) board[i][j-1];
+						right = (newButtonVert) board[i][j+1];
+						bottom = (newButtonHoriz) board[i+1][j];
+						if((top.getBackground()==Color.BLACK)&&(left.getBackground()==Color.black)&&(right.getBackground()==Color.black&&(bottom.getBackground()==Color.black)))
+						{		
+							text = ((JTextAreaCustom)board[i][j]);
+							System.out.println(text.getText());
+							if(text.getText().equals("")){
+								text.setText(Char);
+							}
 						}
 					}
 				}
 			}
 		}
-	}
-	public static void isChange() {
-		System.out.println("it worked");
-		controll.updatePlayerTurn();
-	}
+	}	
 	
+	public static void boardScorer(JComponent[][] board, int rows, int columns, String Char)
+	{
+		
+	}
 	public static void registerController(dotControllerInfoForm dot)
 	{
 		controll = dot;
 	}
+	
+	public static void avoidInitialization(int rows, int columns, String Char){
+		boardChanger(array,rows,columns,Char);
+	}
+	
+	public static String whoChar(){
+		String returnVal = "";
+		if(controll.isPlayerOneTurn()==true){
+			returnVal=controll.getPlayerChar(controll.getPlayerOneName());
+		}
+		else
+		{
+			returnVal=controll.getPlayerChar(controll.getPlayerTwoName());
+		}
+		return returnVal;
+	}	
 }

@@ -71,7 +71,7 @@ public class DotInfoForm extends JFrame {
 		    				
 		    				controller.updateNameOne(playerOneName.getText());
 		    				controller.updateNameTwo(playerTwoName.getText());
-		    				controller.updateCharOne(playerTwoChar.getText());
+		    				controller.updateCharOne(playerOneChar.getText());
 		    				controller.updateCharTwo(playerTwoChar.getText());
 		    				controller.updateBoardSizeHeight(hInt);
 		    				controller.updateBoardSizeWidth(wInt);

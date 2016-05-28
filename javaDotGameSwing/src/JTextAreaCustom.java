@@ -11,11 +11,17 @@ import javax.swing.JTextArea;
 public final class JTextAreaCustom extends JTextArea {
 	
 	
+	
+
 	public JTextAreaCustom() {
 		this.setPreferredSize(new Dimension(50,50));
 		this.setEditable(false);
 		//this.setBackground(Color.BLACK);
 		this.setVisible(true);
+		this.setText("");
+		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setAlignmentY(CENTER_ALIGNMENT);
+		
 		
 	}
 }

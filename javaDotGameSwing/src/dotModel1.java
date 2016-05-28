@@ -5,63 +5,64 @@ public  class dotModel1   {
 	// 0 - playerOneName, 1 - playerTwoName, 2 - playerOneChar, 3 - playertwoChar;
 	
 	public static String[] StringValsInReferenceForm = new String[4];
-		
+	public static String playerCharOne = "";
+	public static String playerCharTwo = "";
 		// 0 - playerOneScore, 1 - playerTwoScore, 2 - boardSizeH, 3 - boardSizeW;
 		
 	public static int[] IntValsInReferenceForm = new int[4];
 	
-	public static boolean playerOneTurn = true;
+	public boolean playerOneTurn = true;
 	
-	public static boolean isPlayerOneturn() {
+	public boolean isPlayerOneturn() {
 		
 		return playerOneTurn;
 		
 	}
 	
-	public static String playerOneName() {
+	public String playerOneName() {
 		
 		return StringValsInReferenceForm[0];
 		
 	}
 
 	
-	public static String playerTwoName() {
+	public String playerTwoName() {
 		
 		return StringValsInReferenceForm[1];
 	}
 
 
-	public static String playerOneChar() {
+	public String playerOneChar() {
 		
-		return StringValsInReferenceForm[2];
+		return playerCharOne;
 	}
 
 	
-	public static String playerTwoChar() {
+	public String playerTwoChar() {
 		
-		return StringValsInReferenceForm[3];
+		return playerCharTwo;
 	}
 
 	
-	public static int playerOneScore() {
+	public int playerOneScore() {
 		
 		return IntValsInReferenceForm[0];
 	}
 
 	
-	public static int playerTwoScore() {
+	public int playerTwoScore() {
 		
 		return IntValsInReferenceForm[1];
 	}
 
 	
-	public static int boardSizeHeightBox() {
+	public int boardSizeHeightBox() {
 		
 		return IntValsInReferenceForm[2];
 	}
 
 	
-	public static int boardSizeWidthBox() {
+	public int boardSizeWidthBox() {
 		
 		return IntValsInReferenceForm[3];
 	}
@@ -81,13 +82,13 @@ public  class dotModel1   {
 
 	
 	public void setCharOne(String charc) {
-		StringValsInReferenceForm[2] = charc;
+		playerCharOne = charc;
 		
 	}
 
 	
 	public void setCharTwo(String charc) {
-		StringValsInReferenceForm[3] = charc;
+		playerCharTwo = charc;
 		
 	}
 
@@ -120,7 +121,7 @@ public  class dotModel1   {
 		if(this.playerOneTurn==true){
 			this.playerOneTurn = false;
 		}
-		if(this.playerOneTurn==false){
+		else if(this.playerOneTurn==false){
 			this.playerOneTurn = true;
 		}
 		
