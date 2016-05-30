@@ -1,6 +1,7 @@
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -22,8 +23,13 @@ import java.awt.Color;
 
 public final class dotMainView extends JFrame{
 	
-	private JTextArea playerOneName,playerTwoName,playerOneScore,playerTwoScore;
+	private JTextArea playerOneName,playerTwoName;
 
+
+	static Font newFont = new Font(null, Font.PLAIN, 18);
+	static Font newFont2 = new Font(null, Font.PLAIN, 38);
+	private static JTextArea playerOneScore; 
+	private static JTextArea playerTwoScore;
 
 	private static JTextArea turnText;
 	
@@ -34,7 +40,7 @@ public final class dotMainView extends JFrame{
 	
 	public static dotControllerInfoForm controll;
 	public static dotControllerInfoForm booger;
-	
+	public static int height = 24;
 	public static int flagged = 0;
 	
 	public dotMainView(){
@@ -42,26 +48,36 @@ public final class dotMainView extends JFrame{
 		String nameOne = controll.getPlayerOneName();
 		String nameTwo = controll.getPlayerTwoName();
 		
-		this.playerOneName = new JTextArea(nameOne);
-		playerOneName.setPreferredSize(new Dimension(300,50));
+		this.playerOneName = new JTextArea(nameOne+"'s score:");
+		int numbOne = spaceLength(nameOne+"'s score:");
+		playerOneName.setPreferredSize(new Dimension(numbOne,height));
 		playerOneName.setEditable(false);
+		playerOneName.setFont(newFont);
 		
-		this.playerTwoName = new JTextArea(nameTwo);
-		playerTwoName.setPreferredSize(new Dimension(300,50));
+		this.playerTwoName = new JTextArea(nameTwo+"'s score:");
+		int numbTwo = spaceLength(nameTwo+"'s score:");
+		playerTwoName.setPreferredSize(new Dimension(numbTwo,height));
 		playerTwoName.setEditable(false);
+		playerTwoName.setFont(newFont);
 		
 		this.playerOneScore = new JTextArea(controll.getPlayerOneScore());
-		playerOneScore.setPreferredSize(new Dimension(50,50));
+		playerOneScore.setPreferredSize(new Dimension(50,height));
 		playerOneScore.setEditable(false);
+		playerOneScore.setFont(newFont);
 		
 		this.playerTwoScore = new JTextArea(controll.getPlayerTwoScore());
-		playerTwoScore.setPreferredSize(new Dimension(50,50));
+		
+		playerTwoScore.setPreferredSize(new Dimension(50,height));
 		playerTwoScore.setEditable(false);
+		playerTwoScore.setFont(newFont);
 		
 		
-		this.turnText = new JTextArea(controll.getPlayerOneName());
-		turnText.setPreferredSize(new Dimension(150,50));
+		this.turnText = new JTextArea(controll.getPlayerOneName()+"'s turn");
+		int numbText = spaceLength(controll.getPlayerOneName()+"'s turn");
+		turnText.setPreferredSize(new Dimension(numbText,height));
 		turnText.setEditable(false);
+		turnText.setFont(newFont);
+		
 		
 		JPanel board = new JPanel();
 		int boardWidth = allocateBoardWidth(controll.getColumns());
@@ -128,7 +144,7 @@ public final class dotMainView extends JFrame{
 		container.add(buttonFlow);
 		
 		add(container);
-		setSize(boardHeight+60,boardWidth+370);
+		setSize(boardWidth+60,boardHeight+370);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	public void updateScoreOne(String t){
@@ -186,18 +202,28 @@ public final class dotMainView extends JFrame{
 								
 								
 								avoidInitialization(controll.getRows(),controll.getColumns(),whoChar());
-								controll.updatePlayerTurn();
+								
 								if(controll.isPlayerOneTurn()){
-									turnText.setText(controll.getPlayerOneName());
+									controll.updateScoreOne(boardScorer(controll.getRows(),controll.getColumns(),whoChar()));
+									controll.updatePlayerTurn();
+									turnText.setText(controll.getPlayerTwoName()+"'s turn");
+									int numbText = spaceLength(controll.getPlayerTwoName()+"'s turn");
+									turnText.setPreferredSize(new Dimension(numbText,height));
+									
 								}
 								else
 								{
-									turnText.setText(controll.getPlayerTwoName());
+									controll.updateScoreTwo(boardScorer(controll.getRows(),controll.getColumns(),whoChar()));
+									controll.updatePlayerTurn();
+									turnText.setText(controll.getPlayerOneName()+"'s turn");
+									int numbText = spaceLength(controll.getPlayerOneName()+"'s turn");
+									turnText.setPreferredSize(new Dimension(numbText,height));
+									
 								}
-						    }
-
-							
-							
+								playerOneScore.setText(controll.getPlayerOneScore());
+								playerTwoScore.setText(controll.getPlayerTwoScore());
+								declareWinner(controll.getRows(),controll.getColumns(),controll.getPlayerChar(controll.getPlayerOneName()),controll.getPlayerChar(controll.getPlayerTwoName()));
+						    }						
 						});
 					}
 				}
@@ -214,17 +240,28 @@ public final class dotMainView extends JFrame{
 						    {
 								curV.setBackground(Color.BLACK);
 								
-								
-								
+															
 								avoidInitialization(controll.getRows(),controll.getColumns(),whoChar());
-								controll.updatePlayerTurn();
+								
 								if(controll.isPlayerOneTurn()){
-									turnText.setText(controll.getPlayerOneName());
+									controll.updateScoreOne(boardScorer(controll.getRows(),controll.getColumns(),whoChar()));
+									controll.updatePlayerTurn();
+									turnText.setText(controll.getPlayerTwoName()+"'s turn");
+									int numbText = spaceLength(controll.getPlayerTwoName()+"'s turn");
+									turnText.setPreferredSize(new Dimension(numbText,height));
+									
 								}
 								else
 								{
-									turnText.setText(controll.getPlayerTwoName());
+									controll.updateScoreTwo(boardScorer(controll.getRows(),controll.getColumns(),whoChar()));
+									controll.updatePlayerTurn();
+									turnText.setText(controll.getPlayerOneName()+"'s turn");
+									int numbText = spaceLength(controll.getPlayerOneName()+"'s turn");
+									turnText.setPreferredSize(new Dimension(numbText,height));
 								}
+								playerOneScore.setText(controll.getPlayerOneScore());
+								playerTwoScore.setText(controll.getPlayerTwoScore());
+								declareWinner(controll.getRows(),controll.getColumns(),controll.getPlayerChar(controll.getPlayerOneName()),controll.getPlayerChar(controll.getPlayerTwoName()));
 						    }
 						});
 					}
@@ -232,6 +269,7 @@ public final class dotMainView extends JFrame{
 					{
 						// custom text area
 						returnVal[i][j] = new JTextAreaCustom();
+						
 					}
 				}
 			}
@@ -272,9 +310,10 @@ public final class dotMainView extends JFrame{
 						if((top.getBackground()==Color.BLACK)&&(left.getBackground()==Color.black)&&(right.getBackground()==Color.black&&(bottom.getBackground()==Color.black)))
 						{		
 							text = ((JTextAreaCustom)board[i][j]);
-							System.out.println(text.getText());
+							
 							if(text.getText().equals("")){
 								text.setText(Char);
+								text.setFont(newFont2);
 							}
 						}
 					}
@@ -282,10 +321,53 @@ public final class dotMainView extends JFrame{
 			}
 		}
 	}	
-	
-	public static void boardScorer(JComponent[][] board, int rows, int columns, String Char)
+	public static int boardScorer(int rows, int columns, String Char)
 	{
-		
+		int counter = 0;
+		JTextAreaCustom text;
+		int realRows = rows*2 +1;
+		int realColumns = columns*2 + 1;
+		for(int i=1; i<realRows-1; i++)
+		{
+			if (i%2!=0){
+				for(int j=1; j<realColumns-1; j++)
+				{
+					if(j%2!=0)
+					{
+						text = ((JTextAreaCustom)array[i][j]);
+						if(text.getText().equals(Char)){
+							counter++;
+						}
+					}
+				}
+			}
+		}
+		return counter;
+	}
+	public static void declareWinner(int rows, int columns, String char1, String char2) {
+		int counter = 0;
+		JTextAreaCustom text;
+		int realRows = rows*2 +1;
+		int realColumns = columns*2 + 1;
+		for(int i=1; i<realRows-1; i++)
+		{
+			if (i%2!=0){
+				for(int j=1; j<realColumns-1; j++)
+				{
+					if(j%2!=0)
+					{
+						text = ((JTextAreaCustom)array[i][j]);
+						if(text.getText().equals(char1)||text.getText().equals(char2)){
+							counter++;
+						}
+					}
+				}
+			}
+		}
+		if(counter==(rows*columns)){
+			winnerView won = new winnerView();
+	    	won.registerController(controll);
+		}
 	}
 	public static void registerController(dotControllerInfoForm dot)
 	{
@@ -298,6 +380,7 @@ public final class dotMainView extends JFrame{
 	
 	public static String whoChar(){
 		String returnVal = "";
+		
 		if(controll.isPlayerOneTurn()==true){
 			returnVal=controll.getPlayerChar(controll.getPlayerOneName());
 		}
@@ -305,6 +388,14 @@ public final class dotMainView extends JFrame{
 		{
 			returnVal=controll.getPlayerChar(controll.getPlayerTwoName());
 		}
+		System.out.println(returnVal);
 		return returnVal;
-	}	
+	}
+	public static int spaceLength(String text){
+		
+		double numb = text.length();
+		double pixels = numb*8.8;
+		int retPix = (int) pixels;
+		return retPix;
+	}
 }

@@ -112,7 +112,7 @@ public  class dotModel1   {
 
 	
 	public void setScoreTwo(int scoreTwo) {
-		IntValsInReferenceForm[0] = scoreTwo;
+		IntValsInReferenceForm[1] = scoreTwo;
 		
 	}
 

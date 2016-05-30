@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
@@ -19,7 +20,7 @@ import java.awt.Color;
 public final class winnerView extends JFrame{
 	
 	private static dotControllerInfoForm controll;
-	
+	Font newFont = new Font(null, Font.PLAIN, 18);
 	JTextArea winnerText = new JTextArea();
 	
 	public winnerView() {
@@ -38,14 +39,15 @@ public final class winnerView extends JFrame{
 		
 		int p1Score = Integer.parseInt(controll.getPlayerOneScore());
 		int p2Score = Integer.parseInt(controll.getPlayerTwoScore());
-		
+		String p1Name = controll.getPlayerOneName();
+		String p2Name = controll.getPlayerTwoName();
 		if(p1Score > p2Score)
 		{
-			winText = "Player two wins with a score of " + p1Score + "!";
+			winText = p1Name+" wins with a score of " + p1Score + "!";
 		}
-		else if(p2Score>p1Score)
+		else if(p2Score > p1Score)
 		{
-			winText = "Player two wins with a score of " + p2Score + "!";
+			winText = p2Name+" wins with a score of " + p2Score + "!";
 		}
 		else
 		{
@@ -53,8 +55,11 @@ public final class winnerView extends JFrame{
 		}
 		
 		winnerText.setEditable(false);
-		winnerText.setPreferredSize(new Dimension(200,50));
+		int setLength = spaceLength(winText);
+		winnerText.setPreferredSize(new Dimension(setLength,24));
 		winnerText.setText(winText);
+		winnerText.setFont(newFont);
+		winnerText.setLineWrap(true);
 		
 		JPanel textFlow = new JPanel(new FlowLayout());
 		textFlow.add(winnerText);
@@ -70,11 +75,17 @@ public final class winnerView extends JFrame{
 		container.add(buttonFlow);
 		
 		add(container);
-		setSize(300,300);
+		setSize(setLength+20,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public void registerController(dotControllerInfoForm dot)
 	{
 		controll = dot;
+	}
+	public static int spaceLength(String text){
+		double numb = text.length();
+		double pixels = numb*8.9;
+		int retPix = (int) pixels;
+		return retPix;
 	}
 }
